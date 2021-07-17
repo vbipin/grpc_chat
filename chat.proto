@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+
+// The greeting service definition.
+service Chat {
+  // Adds a new user to the server
+  rpc add_user(User) returns (Status) {}
+  
+  //Deletes a user
+  rpc del_user(User) returns (Status) {}
+  
+  //Get status
+  rpc get_status(User) returns (Status) {}
+  
+  // Sends a message to the server
+  rpc send_msg (Packet) returns (HelloReply) {}
+  // Read one msg from the server
+  rpc get_msg () returns (Packet) {}
+}
+
+//Message to register/deregister a new user
+message User {
+    string name = 1;
+}
+
+//This message is used to get the status of pending messages
+message Status {
+    int32 num_packets = 0;
+}
+
+
+// This is the main packet format.
+// Probably we can use the same for all text and file messages
+message Packet {
+  string name = 1;
+}
